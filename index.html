@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#111827">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="stylesheet" href="styles.css">
+<title>ClashCoach</title>
+</head>
+<body>
+<header class="top">
+  <div>
+    <div class="brand">⚔️ ClashCoach</div>
+    <div class="sub">Screenshot → army → attack plan</div>
+  </div>
+  <div class="modeSwitch">
+    <button id="beginnerBtn" class="active">Just Win</button>
+    <button id="proBtn">Pro</button>
+  </div>
+</header>
+
+<main>
+<section id="home">
+  <div class="hero">
+    <h1>Get a plan for this base.</h1>
+    <p class="beginnerText">Upload the enemy base, tell ClashCoach what you have, and follow the numbered markers.</p>
+    <p class="proText hidden">Run a fast recommendation or open the detailed analysis to adjust the plan before attacking.</p>
+  </div>
+
+  <div class="card">
+    <label class="upload">
+      <input id="file" type="file" accept="image/*">
+      <span>📸 Upload enemy base screenshot</span>
+      <small>Best results: full base visible, no heavy cropping.</small>
+    </label>
+    <img id="preview" class="preview" hidden>
+  </div>
+
+  <div class="card beginnerOnly">
+    <h2>1. What are you using?</h2>
+    <div id="quickArmies" class="quickGrid"></div>
+    <p class="muted">Pick a recommended army or switch to Pro to build your own.</p>
+  </div>
+
+  <div class="card beginnerOnly">
+    <h2>2. Army size</h2>
+    <div class="row">
+      <label class="grow">Housing capacity<input id="capacityQuick" type="number" min="1" max="400" value="260"></label>
+      <div class="capacityBox"><b id="quickUsed">0</b> / <span id="quickCap">260</span></div>
+    </div>
+  </div>
+
+  <div class="card proOnly hidden">
+    <h2>Army Builder</h2>
+    <div class="row">
+      <label class="grow">Max housing<input id="capacity" type="number" min="1" max="400" value="260"></label>
+      <div class="capacityBox"><b id="used">0</b> / <span id="capText">260</span></div>
+    </div>
+    <div class="sectionTitle">Preset armies</div>
+    <div id="presets" class="presetGrid"></div>
+    <div class="sectionTitle">Troops</div>
+    <div id="troops"></div>
+    <div class="sectionTitle">Spells</div>
+    <div id="spells"></div>
+    <button id="saveArmy" class="secondary">Save Army</button>
+  </div>
+
+  <div class="card proOnly hidden">
+    <h2>Vision scan</h2>
+    <p class="muted">ClashCoach V4 is structured for real screenshot vision. On GitHub Pages, automatic building recognition needs a connected vision service; this build never pretends a generic screenshot was perfectly recognized.</p>
+    <div id="visionStatus" class="status">No scan yet.</div>
+    <button id="manualScan" class="secondary">Use manual landmarks instead</button>
+  </div>
+
+  <button id="analyze" class="primary">⚡ Analyze & Give Me The Win Plan</button>
+
+  <div id="result" class="card hidden"></div>
+</section>
+
+<section id="army" class="hidden">
+  <div class="card">
+    <h2>Army Builder</h2>
+    <p>For players who want exact control. Your selected army is used to choose the attack style and plan.</p>
+    <div id="armyFull"></div>
+  </div>
+</section>
+</main>
+
+<nav>
+<button data-tab="home" class="active">🏠 Coach</button>
+<button data-tab="army">🪖 Army</button>
+</nav>
+<script src="app.js"></script>
+</body>
+</html>
